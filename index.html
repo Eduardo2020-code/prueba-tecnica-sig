@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Biblioteca - Universidad de los Andes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="btn-agregar">➕ Agregar préstamo</button>
+
+<div id="modal" class="modal">
+  <div class="modal-contenido">
+    <h2>Nuevo Préstamo</h2>
+    <form id="formulario">
+      <label>Libro:</label>
+      <select id="libro">
+        <!-- Se llena dinámicamente -->
+      </select><br><br>
+
+      <label>Estudiante:</label>
+      <select id="estudiante">
+        <!-- Se llena dinámicamente -->
+      </select><br><br>
+
+      <label>Fecha préstamo:</label>
+      <input type="date" id="fecha_prestamo" required><br><br>
+
+      <label>Fecha estimada devolución:</label>
+      <input type="date" id="fecha_estimada" required><br><br>
+
+      <button type="submit">Guardar</button>
+      <button type="button" id="cerrar-modal">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+  <h1>📚 Catálogo de Libros</h1>
+  <input type="text" id="buscador" placeholder="Buscar por título o tema...">
+  <ul id="lista-libros"></ul>
+
+  <script src="script.js"></script>
+</body>
+</html>
