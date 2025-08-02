@@ -20,7 +20,8 @@ const estudiantes = [
 
 const prestamos = [
   { id: 1, id_libro: 1, id_estudiante: 1, fecha_prestamo: "2025-07-20", fecha_estimada: "2025-08-03", fecha_real: null },
-  { id: 2, id_libro: 2, id_estudiante: 2, fecha_prestamo: "2025-07-10", fecha_estimada: "2025-07-24", fecha_real: "2025-07-22" }
+  { id: 2, id_libro: 2, id_estudiante: 2, fecha_prestamo: "2025-07-10", fecha_estimada: "2025-07-24", fecha_real: "2025-07-22" },
+  { id: 3, id_libro: 3, id_estudiante: 3, fecha_prestamo: "2025-07-10", fecha_estimada: "2025-07-24", fecha_real: "2025-07-22" }
 ];
 
 // ==== Mostrar préstamos ====
