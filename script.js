@@ -115,10 +115,15 @@ formulario.addEventListener('submit', e => {
 
 // ==== API JSONPlaceholder ====
 
+// ==== API JSONPlaceholder con búsqueda progresiva ====
+
 const listaPosts = document.getElementById('lista-posts');
 const buscadorApi = document.getElementById('buscador-api');
 let postsData = [];
+let filtroActual = '';
+let cantidadMostrada = 5;
 
+// Cargar todos los posts y usuarios
 async function cargarPosts() {
   try {
     const resPosts = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -134,18 +139,22 @@ async function cargarPosts() {
       };
     });
 
-    console.log("Total publicaciones cargadas:", postsData.length); // 👈 Verifica que diga 100
-    mostrarPosts(postsData);
+    mostrarPosts();
   } catch (err) {
     listaPosts.innerHTML = "<li>Error al cargar publicaciones.</li>";
   }
 }
 
+// Mostrar hasta cierta cantidad de publicaciones que coincidan con la búsqueda
+function mostrarPosts() {
+  const coincidencias = postsData.filter(post =>
+    post.title.toLowerCase().includes(filtroActual)
+  );
 
-
-function mostrarPosts(data) {
+  const aMostrar = coincidencias.slice(0, cantidadMostrada);
   listaPosts.innerHTML = '';
-  data.forEach(post => {
+
+  aMostrar.forEach(post => {
     const li = document.createElement('li');
     li.innerHTML = `
       <strong>${post.title}</strong><br>
@@ -157,10 +166,19 @@ function mostrarPosts(data) {
   });
 }
 
+// Detectar escritura y aumentar resultados
 buscadorApi.addEventListener('input', () => {
-  const texto = buscadorApi.value.toLowerCase();
-  const filtrados = postsData.filter(p => p.title.toLowerCase().includes(texto));
-  mostrarPosts(filtrados);
+  filtroActual = buscadorApi.value.toLowerCase();
+  cantidadMostrada = 5;
+  mostrarPosts();
+});
+
+// Aumentar cantidad si el usuario sigue escribiendo más texto
+buscadorApi.addEventListener('keyup', () => {
+  if (filtroActual.length > 2) {
+    cantidadMostrada += 2; // Incrementa a medida que escribe
+    mostrarPosts();
+  }
 });
 
 cargarPosts();
