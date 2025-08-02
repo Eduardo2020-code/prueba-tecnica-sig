@@ -103,3 +103,10 @@ input, select {
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
+
+
+#lista-posts {
+  max-height: none;
+  overflow-y: auto;
+  padding: 0;
+}

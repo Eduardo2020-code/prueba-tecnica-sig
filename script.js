@@ -1,4 +1,4 @@
-// ==== Datos locales ====
+// ==== Datos simulados ====
 
 const estanterias = [
   { id: 1, ubicacion: "Sección A", tema: "Ciencia", material: "Madera", capacidad_maxima: 100 },
@@ -40,8 +40,9 @@ function mostrarPrestamos(data) {
       <strong>${libro.titulo}</strong><br>
       Autor: ${libro.autor} (${libro.tipo})<br>
       Estantería: ${estanteria.ubicacion} – ${estanteria.tema}<br>
+      Material: ${estanteria.material}<br>
       Estudiante: ${estudiante.nombre} (${estudiante.programa})<br>
-      Fecha de préstamo: ${p.fecha_prestamo}<br>
+      Fecha préstamo: ${p.fecha_prestamo}<br>
       Fecha estimada devolución: ${p.fecha_estimada}<br>
       Fecha real: ${p.fecha_real ?? "<em>En curso</em>"}
       <hr>
@@ -61,7 +62,7 @@ buscador.addEventListener('input', () => {
 
 mostrarPrestamos(prestamos);
 
-// ==== Modal para nuevo préstamo ====
+// ==== Modal ====
 
 const modal = document.getElementById('modal');
 const btnAgregar = document.getElementById('btn-agregar');
@@ -112,8 +113,7 @@ formulario.addEventListener('submit', e => {
   modal.style.display = 'none';
 });
 
-
-// ==== Sección API JSONPlaceholder ====
+// ==== API JSONPlaceholder ====
 
 const listaPosts = document.getElementById('lista-posts');
 const buscadorApi = document.getElementById('buscador-api');
@@ -126,7 +126,7 @@ async function cargarPosts() {
     const posts = await resPosts.json();
     const users = await resUsers.json();
 
-    postsData = posts.slice(0, 10).map(post => {
+    postsData = posts.map(post => {
       const user = users.find(u => u.id === post.userId);
       return {
         ...post,
@@ -134,11 +134,14 @@ async function cargarPosts() {
       };
     });
 
+    console.log("Total publicaciones cargadas:", postsData.length); // 👈 Verifica que diga 100
     mostrarPosts(postsData);
   } catch (err) {
     listaPosts.innerHTML = "<li>Error al cargar publicaciones.</li>";
   }
 }
+
+
 
 function mostrarPosts(data) {
   listaPosts.innerHTML = '';
