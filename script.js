@@ -1,5 +1,4 @@
-// ==== Datos simulados ====
-
+//Datos simulados 
 const estanterias = [
   { id: 1, ubicacion: "Sección A", tema: "Ciencia", material: "Madera", capacidad_maxima: 100 },
   { id: 2, ubicacion: "Sección B", tema: "Literatura", material: "Metal", capacidad_maxima: 80 },
@@ -24,7 +23,7 @@ const prestamos = [
   { id: 3, id_libro: 3, id_estudiante: 3, fecha_prestamo: "2025-07-10", fecha_estimada: "2025-07-24", fecha_real: "2025-07-22" }
 ];
 
-// ==== Mostrar préstamos ====
+//préstamos
 
 const lista = document.getElementById('lista-libros');
 const buscador = document.getElementById('buscador');
